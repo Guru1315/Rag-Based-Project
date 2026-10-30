@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 
-/** "Are you sure?" dialog used before every destructive action. */
 export function ConfirmDialog({
   open,
   onOpenChange,
