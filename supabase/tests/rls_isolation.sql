@@ -1,14 +1,6 @@
--- =====================================================================
--- RLS isolation test. Run it in the Supabase SQL Editor AFTER applying
--- the migration. It creates two throw-away users, acts as each of them
--- and checks that user B cannot see or change user A's data.
---
--- Everything runs inside one transaction that is ROLLED BACK at the end,
--- so nothing is left behind. If any check fails you get an exception.
--- =====================================================================
+
 begin;
 
--- two fake users (inserted as the postgres role, bypasses RLS)
 insert into auth.users (id, instance_id, aud, role, email)
 values
   ('aaaaaaaa-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000000', 'authenticated', 'authenticated', 'user-a@example.test'),
