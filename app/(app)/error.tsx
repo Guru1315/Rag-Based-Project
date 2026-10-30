@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import { AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-/** Friendly error screen. The technical details stay in the server logs. */
 export default function AppError({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
   useEffect(() => {
     console.error("App error", error.digest ?? "");
