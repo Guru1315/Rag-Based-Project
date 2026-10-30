@@ -21,7 +21,6 @@ import { cn, formatBytes, timeAgo } from "@/lib/utils";
 import type { DocumentRow } from "@/types";
 import { DocumentPreviewDialog } from "./DocumentPreviewDialog";
 
-/** A stuck "working" document can be re-processed after this long (matches the server). */
 const STALE_MS = 5 * 60 * 1000;
 
 export function DocumentsTable({ rows, showKnowledgeBase = true }: { rows: DocumentRow[]; showKnowledgeBase?: boolean }) {
@@ -31,7 +30,6 @@ export function DocumentsTable({ rows, showKnowledgeBase = true }: { rows: Docum
   const [working, setWorking] = useState<Set<string>>(new Set());
   const [starred, setStarred] = useState<Record<string, boolean>>({});
 
-  // While documents are being processed, read their real status and refresh the page when one changes.
   const activeIds = rows.filter((r) => ACTIVE_STATUSES.includes(r.status)).map((r) => r.id);
   const activeKey = activeIds.join(",");
   useEffect(() => {
@@ -42,7 +40,7 @@ export function DocumentsTable({ rows, showKnowledgeBase = true }: { rows: Docum
         const changed = current.some((c) => rows.find((r) => r.id === c.id)?.status !== c.status);
         if (changed) router.refresh();
       } catch {
-        /* best-effort */
+       
       }
     }, 4000);
     return () => clearInterval(timer);
