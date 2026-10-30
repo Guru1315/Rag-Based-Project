@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown";
 import { CreateKnowledgeBaseDialog } from "./CreateKnowledgeBaseDialog";
 
-/** The "+ New" menu in the top bar. */
 export function QuickCreate() {
   const router = useRouter();
   const [kbOpen, setKbOpen] = useState(false);
