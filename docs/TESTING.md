@@ -1,6 +1,6 @@
 # Testing guide
 
-Nothing below the "Automated" heading has been run in the environment where this code was written (no npm registry, no live Supabase / Google / Gemini). Treat the manual checklist as the real acceptance test.
+Nothing below the "Automated" heading has been run in the environment where this code was written (no npm registry,no live Supabase/Google/Gemini). Treat the manual checklist as the real acceptance test.
 
 ## Automated
 
@@ -24,7 +24,7 @@ Run `supabase/tests/rls_isolation.sql` in the Supabase SQL editor after applying
 Use two different Google accounts (A and B) in two browser profiles.
 
 | # | Check | How | Expected |
-| --- | --- | --- | --- |
+| --- | --- | --- | --- | 
 | 1 | Sign in / out | Sign in with Google, then use the account menu → Sign out | Lands on dashboard; after sign-out you are on the landing page |
 | 2 | Protected routes | While signed out open `/dashboard`, `/documents`, `/chat` | Redirected to `/login` |
 | 2b | Protected API | While signed out `curl -i <site>/api/documents` | `401` with `{ "ok": false, "error": { "code": "UNAUTHENTICATED" … } }` |
