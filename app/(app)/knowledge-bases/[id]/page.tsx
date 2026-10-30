@@ -13,9 +13,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { queryDocuments } from "@/lib/data/documents";
 import { createClient } from "@/lib/supabase/server";
 import { documentListSchema, idParamSchema } from "@/lib/validation";
-
 export const metadata: Metadata = { title: "Knowledge base" };
-
 type Props = {
   params: Promise<{ id: string }>;
   searchParams: Promise<Record<string, string | undefined>>;
