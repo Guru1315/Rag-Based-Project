@@ -33,7 +33,6 @@ interface Preview {
   limit: number;
 }
 
-/** Shows a document's details and the text that was extracted from it. */
 export function DocumentPreviewDialog({
   documentId,
   onOpenChange,
