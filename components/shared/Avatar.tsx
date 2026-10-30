@@ -2,8 +2,6 @@
 
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-
-/** Profile picture with an initials fallback. */
 export function Avatar({
   name,
   src,
@@ -29,7 +27,7 @@ export function Avatar({
       )}
     >
       {src && !failed ? (
-        // eslint-disable-next-line @next/next/no-img-element
+        
         <img
           src={src}
           alt=""
