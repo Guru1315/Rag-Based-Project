@@ -1,5 +1,4 @@
 # Decisions log
-
 Short notes on notable choices and why they were made.
 
 ## Environment constraint (important)
