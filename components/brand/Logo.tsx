@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-/** Document-shaped mark with a small sparkle (the "AI" hint). */
 export function LogoMark({ size = 32, className }: { size?: number; className?: string }) {
   return (
     <svg
@@ -25,8 +24,6 @@ export function LogoMark({ size = 32, className }: { size?: number; className?: 
     </svg>
   );
 }
-
-/** Logo + wordmark. `compact` shows only the mark (for a collapsed sidebar). */
 export function Logo({
   compact = false,
   href = "/",
