@@ -2,7 +2,6 @@ import { fail, logError, ok, requireUser } from "@/lib/api";
 
 export const dynamic = "force-dynamic";
 
-/** GET /api/documents/status?ids=a,b,c  -> real processing status read from the database */
 export async function GET(request: Request) {
   const auth = await requireUser();
   if (auth.error) return auth.error;
