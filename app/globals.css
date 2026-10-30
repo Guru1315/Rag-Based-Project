@@ -1,0 +1,167 @@
+@import "tailwindcss";
+
+/* Dark mode is toggled by adding the "dark" class to <html> (next-themes). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ---------- Light theme tokens ---------- */
+:root {
+  --background: #f7f8fc;
+  --foreground: #11162a;
+  --surface: #ffffff;
+  --surface-2: #f0f2f9;
+  --border: #e1e5f0;
+  --muted-foreground: #556080;
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+  --primary-foreground: #ffffff;
+  --accent: #7c3aed;
+  --ring: #6366f1;
+  --success: #047857;
+  --success-bg: #d1fae5;
+  --warning: #b45309;
+  --warning-bg: #fef3c7;
+  --danger: #b91c1c;
+  --danger-bg: #fee2e2;
+  --info: #1d4ed8;
+  --info-bg: #dbeafe;
+  --shadow: 0 1px 2px rgb(17 22 42 / 0.06), 0 4px 14px rgb(17 22 42 / 0.06);
+  --code-bg: #eef0f8;
+}
+
+/* ---------- Dark theme tokens (default) ---------- */
+.dark {
+  --background: #0a0f1f;
+  --foreground: #e8ecf8;
+  --surface: #101729;
+  --surface-2: #151d33;
+  --border: #232d48;
+  --muted-foreground: #98a4c2;
+  --primary: #5a56e6;
+  --primary-hover: #6b67f0;
+  --primary-foreground: #ffffff;
+  --accent: #8b5cf6;
+  --ring: #8b87ff;
+  --success: #34d399;
+  --success-bg: #0c2f26;
+  --warning: #fbbf24;
+  --warning-bg: #3a2a0a;
+  --danger: #f87171;
+  --danger-bg: #3b1416;
+  --info: #7cb1ff;
+  --info-bg: #0f2547;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 6px 18px rgb(0 0 0 / 0.3);
+  --code-bg: #0c1224;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-accent: var(--accent);
+  --color-ring: var(--ring);
+  --color-success: var(--success);
+  --color-success-bg: var(--success-bg);
+  --color-warning: var(--warning);
+  --color-warning-bg: var(--warning-bg);
+  --color-danger: var(--danger);
+  --color-danger-bg: var(--danger-bg);
+  --color-info: var(--info);
+  --color-info-bg: var(--info-bg);
+  --color-code: var(--code-bg);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --shadow-card: var(--shadow);
+}
+
+html {
+  color-scheme: light;
+}
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Visible keyboard focus everywhere */
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* Respect the "reduce motion" setting of the operating system */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Small helper animations (kept subtle) */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes slide-in-left {
+  from { transform: translateX(-100%); }
+  to { transform: none; }
+}
+@keyframes slide-in-right {
+  from { transform: translateX(100%); }
+  to { transform: none; }
+}
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+.animate-fade-in { animation: fade-in 0.18s ease-out; }
+.animate-slide-left { animation: slide-in-left 0.2s ease-out; }
+.animate-slide-right { animation: slide-in-right 0.2s ease-out; }
+.animate-pulse-soft { animation: pulse-soft 1.4s ease-in-out infinite; }
+
+/* ---------- Markdown content inside chat answers ---------- */
+.prose-chat { line-height: 1.7; font-size: 0.95rem; overflow-wrap: anywhere; }
+.prose-chat > * + * { margin-top: 0.75rem; }
+.prose-chat h1, .prose-chat h2, .prose-chat h3 { font-weight: 600; line-height: 1.3; margin-top: 1.25rem; }
+.prose-chat h1 { font-size: 1.25rem; }
+.prose-chat h2 { font-size: 1.125rem; }
+.prose-chat h3 { font-size: 1rem; }
+.prose-chat ul { list-style: disc; padding-left: 1.4rem; }
+.prose-chat ol { list-style: decimal; padding-left: 1.4rem; }
+.prose-chat li + li { margin-top: 0.25rem; }
+.prose-chat a { color: var(--primary); text-decoration: underline; text-underline-offset: 2px; }
+.prose-chat blockquote { border-left: 3px solid var(--border); padding-left: 0.9rem; color: var(--muted-foreground); }
+.prose-chat code { font-family: var(--font-mono); font-size: 0.85em; background: var(--code-bg); padding: 0.12rem 0.35rem; border-radius: 0.35rem; }
+.prose-chat pre { background: var(--code-bg); border: 1px solid var(--border); border-radius: 0.75rem; padding: 0.9rem 1rem; overflow-x: auto; }
+.prose-chat pre code { background: transparent; padding: 0; font-size: 0.82rem; }
+.prose-chat table { width: 100%; border-collapse: collapse; font-size: 0.875rem; display: block; overflow-x: auto; }
+.prose-chat th, .prose-chat td { border: 1px solid var(--border); padding: 0.4rem 0.65rem; text-align: left; }
+.prose-chat th { background: var(--surface-2); }
+.prose-chat hr { border-color: var(--border); }
+
+/* highlight.js tokens (works in both themes via CSS variables) */
+.hljs-keyword, .hljs-selector-tag, .hljs-literal, .hljs-built_in { color: #8b5cf6; }
+.dark .hljs-keyword, .dark .hljs-selector-tag, .dark .hljs-literal, .dark .hljs-built_in { color: #b69cff; }
+.hljs-string, .hljs-attr, .hljs-template-variable { color: #047857; }
+.dark .hljs-string, .dark .hljs-attr, .dark .hljs-template-variable { color: #6ee7b7; }
+.hljs-number, .hljs-symbol, .hljs-bullet { color: #b45309; }
+.dark .hljs-number, .dark .hljs-symbol, .dark .hljs-bullet { color: #fbbf24; }
+.hljs-comment, .hljs-quote { color: #6b7694; font-style: italic; }
+.hljs-title, .hljs-function .hljs-title, .hljs-section { color: #1d4ed8; }
+.dark .hljs-title, .dark .hljs-function .hljs-title, .dark .hljs-section { color: #7cb1ff; }
+.hljs-type, .hljs-class .hljs-title { color: #0e7490; }
+.dark .hljs-type, .dark .hljs-class .hljs-title { color: #67e8f9; }
