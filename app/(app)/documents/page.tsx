@@ -14,7 +14,6 @@ export const metadata: Metadata = { title: "All Documents" };
 
 export default async function DocumentsPage({ searchParams }: { searchParams: Promise<Record<string, string | undefined>> }) {
   const sp = await searchParams;
-  // Invalid filter values (e.g. a hand-edited URL) fall back to the defaults.
   const parsed = documentListSchema.safeParse(sp);
   const filters = parsed.success ? parsed.data : documentListSchema.parse({});
 
