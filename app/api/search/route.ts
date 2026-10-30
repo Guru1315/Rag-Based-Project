@@ -3,10 +3,6 @@ import { escapeLike } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
-/**
- * GET /api/search?q=  -> knowledge bases, documents and conversations whose
- * name/title matches. Everything goes through RLS, so only the user's own data can match.
- */
 export async function GET(request: Request) {
   const auth = await requireUser();
   if (auth.error) return auth.error;
