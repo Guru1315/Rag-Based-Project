@@ -5,7 +5,6 @@ import { Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CreateKnowledgeBaseDialog } from "./CreateKnowledgeBaseDialog";
 
-/** "Create Knowledge Base" button that opens the dialog. */
 export function CreateKnowledgeBaseButton({ variant = "primary" }: { variant?: "primary" | "outline" }) {
   const [open, setOpen] = useState(false);
   return (
