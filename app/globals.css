@@ -1,9 +1,7 @@
 @import "tailwindcss";
 
-/* Dark mode is toggled by adding the "dark" class to <html> (next-themes). */
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* ---------- Light theme tokens ---------- */
 :root {
   --background: #f7f8fc;
   --foreground: #11162a;
@@ -28,7 +26,6 @@
   --code-bg: #eef0f8;
 }
 
-/* ---------- Dark theme tokens (default) ---------- */
 .dark {
   --background: #0a0f1f;
   --foreground: #e8ecf8;
