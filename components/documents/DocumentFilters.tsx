@@ -3,10 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Input, Select } from "@/components/ui/input";
 import { DOCUMENT_STATUSES, FORMAT_LABELS, SUPPORTED_EXTENSIONS } from "@/lib/config";
 
-/**
- * Search / filter / sort bar. It is a plain GET form, so the values live in the URL
- * (shareable, back-button friendly) and it works without any client-side JavaScript.
- */
 export function DocumentFilters({
   action,
   values,
