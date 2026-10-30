@@ -17,7 +17,8 @@ export function ConfirmDialog({
   title: string;
   description: string;
   confirmLabel?: string;
-  /** Throw an error to keep the dialog open (the caller shows the message). */
+
+  
   onConfirm: () => Promise<void>;
 }) {
   const [loading, setLoading] = useState(false);
