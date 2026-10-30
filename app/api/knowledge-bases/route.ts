@@ -3,7 +3,6 @@ import { createKnowledgeBaseSchema } from "@/lib/validation";
 
 export const dynamic = "force-dynamic";
 
-/** GET /api/knowledge-bases?q=  -> the signed-in user's knowledge bases */
 export async function GET(request: Request) {
   const auth = await requireUser();
   if (auth.error) return auth.error;
@@ -23,8 +22,6 @@ export async function GET(request: Request) {
   }
   return ok(data);
 }
-
-/** POST /api/knowledge-bases  { name, description? } */
 export async function POST(request: Request) {
   const auth = await requireUser();
   if (auth.error) return auth.error;
