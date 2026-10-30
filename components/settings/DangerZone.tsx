@@ -26,7 +26,6 @@ const COPY: Record<Scope, { button: string; title: string; description: string; 
   },
 };
 
-/** Bulk deletion with a typed confirmation. */
 export function DangerZone() {
   const router = useRouter();
   const [scope, setScope] = useState<Scope | null>(null);
