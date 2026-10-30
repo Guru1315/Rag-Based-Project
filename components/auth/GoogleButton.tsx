@@ -14,8 +14,6 @@ function GoogleIcon() {
     </svg>
   );
 }
-
-/** Starts the Google OAuth flow through Supabase. */
 export function GoogleButton({ next }: { next?: string }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -28,7 +26,6 @@ export function GoogleButton({ next }: { next?: string }) {
       provider: "google",
       options: { redirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(safeNext)}` },
     });
-    // On success the browser leaves this page. We only get here if something failed.
     if (error) {
       setError("Could not start Google sign-in. Check that the Google provider is enabled in Supabase.");
       setLoading(false);
