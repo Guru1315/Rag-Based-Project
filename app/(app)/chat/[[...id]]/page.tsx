@@ -14,11 +14,6 @@ type Props = {
   searchParams: Promise<{ kb?: string; doc?: string }>;
 };
 
-/**
- * One page for both /chat (new conversation) and /chat/<id> (existing one).
- * Using a single page keeps the chat component mounted when a new conversation
- * gets its id, so a streaming answer is not interrupted.
- */
 export default async function ChatPage({ params, searchParams }: Props) {
   const segments = (await params).id ?? [];
   if (segments.length > 1) notFound();
