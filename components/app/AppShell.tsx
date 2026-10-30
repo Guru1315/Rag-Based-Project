@@ -69,7 +69,6 @@ export function AppShell({
   const [drawerOpen, setDrawerOpen] = useState(false);
   const signOutForm = useRef<HTMLFormElement>(null);
 
-  // Remember the collapsed state (storage can be unavailable, so it is optional).
   useEffect(() => {
     try {
       setCollapsed(localStorage.getItem(COLLAPSE_KEY) === "1");
