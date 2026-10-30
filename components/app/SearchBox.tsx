@@ -11,7 +11,6 @@ interface Results {
   conversations: { id: string; title: string }[];
 }
 
-/** Global search across the user's own knowledge base names, document titles and chats. */
 export function SearchBox() {
   const [q, setQ] = useState("");
   const [open, setOpen] = useState(false);
