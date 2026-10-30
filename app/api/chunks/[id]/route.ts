@@ -4,7 +4,6 @@ import { idParamSchema } from "@/lib/validation";
 export const dynamic = "force-dynamic";
 type Ctx = { params: Promise<{ id: string }> };
 
-/** GET /api/chunks/:id  -> one stored passage with its document info (used by citation previews) */
 export async function GET(_request: Request, { params }: Ctx) {
   const auth = await requireUser();
   if (auth.error) return auth.error;
