@@ -26,7 +26,6 @@ interface Item {
   file: File;
   path: string;
   kbId: string;
-  /** Same values as the database statuses. "queued" = waiting in the browser. */
   status: DocumentStatus;
   progress: number;
   docId?: string;
@@ -34,7 +33,6 @@ interface Item {
   retriable?: boolean;
 }
 
-/** Errors worth retrying. Parsing errors (corrupted, password-protected...) will fail again. */
 const RETRIABLE_CODES = new Set([
   "NETWORK",
   "TIMEOUT",
@@ -61,7 +59,6 @@ export function UploadZone({
   fixedKnowledgeBaseId,
 }: {
   knowledgeBases: KnowledgeBaseOption[];
-  /** When set, the upload always goes to this knowledge base (no selector). */
   fixedKnowledgeBaseId?: string;
 }) {
   const router = useRouter();
@@ -82,14 +79,12 @@ export function UploadZone({
   const aborts = useRef(new Map<string, AbortController>());
   const cancelled = useRef(new Set<string>());
 
-  // If the list of knowledge bases changes (e.g. the first one was just created), pick one.
   useEffect(() => {
     if (!kbId && options[0]) setKbId(options[0].id);
   }, [kbId, options]);
 
   const busy = items.some((i) => ["queued", "uploading", "extracting", "chunking", "indexing"].includes(i.status));
 
-  // Warn before closing the tab while files are still being uploaded or processed.
   useEffect(() => {
     if (!busy) return;
     const handler = (event: BeforeUnloadEvent) => {
