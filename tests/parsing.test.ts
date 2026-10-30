@@ -4,14 +4,12 @@ import JSZip from "jszip";
 import { ParseError, parseDocument } from "@/lib/parsing";
 import { parseCsv } from "@/lib/parsing/csv";
 import { parseTextFile } from "@/lib/parsing/text";
-
 describe("text files", () => {
   it("reads plain text and markdown", () => {
     const parsed = parseTextFile(Buffer.from("# Title\r\n\r\n\r\n\r\nSome   text  here"));
     expect(parsed.segments).toHaveLength(1);
     expect(parsed.segments[0].text).toBe("# Title\n\nSome text here");
   });
-
   it("rejects empty files", () => {
     expect(() => parseTextFile(Buffer.from("   \n "))).toThrowError(ParseError);
   });
