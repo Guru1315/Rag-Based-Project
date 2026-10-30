@@ -19,7 +19,6 @@ export default async function SettingsPage() {
   const count = (table: string) => supabase.from(table).select("id", { count: "exact", head: true });
   const dayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
 
-  // Real measurements from the user's own saved data.
   const [kbs, docs, chunks, chats, messages, questions24h, sizes] = await Promise.all([
     count("knowledge_bases"),
     count("documents"),
