@@ -10,12 +10,6 @@ const schema = z.object({
   confirm: z.literal("DELETE"),
 });
 
-/**
- * DELETE /api/account/data  { scope, confirm: "DELETE" }
- *   scope "documents"     -> every knowledge base, document, chunk and stored file
- *   scope "conversations" -> every conversation and message
- * (Deleting the sign-in account itself needs the Supabase dashboard; see the README.)
- */
 export async function DELETE(request: Request) {
   const auth = await requireUser();
   if (auth.error) return auth.error;
