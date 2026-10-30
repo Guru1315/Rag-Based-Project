@@ -13,7 +13,6 @@ export const maxDuration = 60;
 
 type Turn = { role: "user" | "model"; parts: { text: string }[] };
 
-/** Gemini wants turns that alternate user/model. Merge neighbours with the same role. */
 function toTurns(history: { role: string; content: string }[]): Turn[] {
   const turns: Turn[] = [];
   for (const m of history) {
@@ -27,11 +26,6 @@ function toTurns(history: { role: string; content: string }[]): Turn[] {
   return turns;
 }
 
-/**
- * POST /api/chat
- * Streams newline-delimited JSON events (see ChatStreamEvent in types/index.ts):
- *   meta -> sources -> delta* -> done        (or `error`)
- */
 export async function POST(request: Request) {
   const auth = await requireUser();
   if (auth.error) return auth.error;
