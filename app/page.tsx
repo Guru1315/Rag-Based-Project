@@ -99,7 +99,6 @@ export default async function LandingPage() {
             </div>
           </div>
 
-          {/* Illustrative preview (static picture, not live data) */}
           <div className="relative mx-auto max-w-5xl px-4 pb-20 sm:px-6">
             <div
               role="img"
