@@ -8,7 +8,6 @@ import { isSupabaseConfigured } from "@/lib/auth";
 
 export const metadata: Metadata = { title: "Sign in" };
 
-// Only these fixed messages can be shown, so a crafted link can't display arbitrary text.
 const ERROR_MESSAGES: Record<string, string> = {
   cancelled: "Google sign-in was cancelled or failed. Please try again.",
   failed: "We couldn't complete sign-in. Please try again.",
