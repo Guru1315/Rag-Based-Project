@@ -23,7 +23,6 @@ interface Props {
   initialMessages: ChatMessage[];
   knowledgeBases: { id: string; name: string }[];
   initialScope: Scope;
-  /** True for an existing conversation: its scope can no longer change. */
   locked: boolean;
   readyDocumentCount: number;
 }
@@ -62,9 +61,6 @@ export function ChatWorkspace({ conversation, initialMessages, knowledgeBases, i
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const scopeLocked = locked || conversationId !== null || messages.length > 0;
-
-  // The same component serves /chat and /chat/[id]. When the user opens a DIFFERENT conversation
-  // (or "New Chat"), reset the state. Our own newly created conversation does not trigger a reset.
   useEffect(() => {
     const propId = conversation?.id ?? null;
     if (propId === conversationIdRef.current) return;
@@ -79,13 +75,10 @@ export function ChatWorkspace({ conversation, initialMessages, knowledgeBases, i
     setError(null);
     setStreaming(false);
     setActiveMessageId(null);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [conversation?.id]);
 
-  // Stop any running answer when leaving the page.
   useEffect(() => () => abortRef.current?.abort(), []);
 
-  // Keep the newest message in view.
   useEffect(() => {
     const reduce = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
     bottomRef.current?.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "end" });
@@ -142,8 +135,6 @@ export function ChatWorkspace({ conversation, initialMessages, knowledgeBases, i
             regenerate: request.regenerate,
           }),
         });
-
-        // Problems found before streaming starts come back as normal JSON errors.
         if (!response.ok || !response.body) {
           let message = "Something went wrong. Please try again.";
           try {
@@ -174,7 +165,6 @@ export function ChatWorkspace({ conversation, initialMessages, knowledgeBases, i
                 conversationIdRef.current = event.conversationId;
                 setConversationId(event.conversationId);
                 setTitle(event.title);
-                // Show the real address without reloading (the page keeps its state).
                 window.history.replaceState(null, "", `/chat/${event.conversationId}`);
               }
               break;
@@ -213,7 +203,6 @@ export function ChatWorkspace({ conversation, initialMessages, knowledgeBases, i
             try {
               handle(JSON.parse(line) as ChatStreamEvent);
             } catch {
-              /* ignore a malformed line */
             }
           }
         }
@@ -224,11 +213,11 @@ export function ChatWorkspace({ conversation, initialMessages, knowledgeBases, i
         } else {
           patchAssistant({ pending: false });
         }
-        // Refresh server data (the sidebar list of conversations).
+    
         router.refresh();
       } catch (e) {
         if (controller.signal.aborted) {
-          // "Stop" was pressed: keep the partial answer, or remove an empty placeholder.
+         
           setMessages((prev) => prev.filter((m) => !(m.id === assistantId && !m.content)).map((m) => (m.id === assistantId ? { ...m, pending: false, status: "stopped" } : m)));
         } else {
           dropPending();
