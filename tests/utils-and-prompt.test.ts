@@ -3,7 +3,6 @@ import { NOT_ENOUGH_INFO } from "@/lib/config";
 import { buildContext, buildUserPrompt, isNotEnoughInfo, SYSTEM_INSTRUCTION } from "@/lib/rag/prompt";
 import { escapeLike, fileExtension, formatBytes, safeFileName, sanitizeRelativePath } from "@/lib/utils";
 import type { Source } from "@/types";
-
 const source = (over: Partial<Source> = {}): Source => ({
   n: 1,
   chunkId: "c1",
