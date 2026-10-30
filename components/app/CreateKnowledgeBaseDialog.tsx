@@ -15,7 +15,6 @@ export function CreateKnowledgeBaseDialog({
 }: {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  /** If given, called instead of opening the new knowledge base. */
   onCreated?: (kb: { id: string; name: string }) => void;
 }) {
   const router = useRouter();
