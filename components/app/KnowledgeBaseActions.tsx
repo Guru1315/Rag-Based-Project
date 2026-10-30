@@ -11,7 +11,6 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { Input, Label, Textarea } from "@/components/ui/input";
 import { api, errorMessage } from "@/lib/client-api";
 
-/** Rename / delete menu for one knowledge base. */
 export function KnowledgeBaseActions({
   id,
   name,
