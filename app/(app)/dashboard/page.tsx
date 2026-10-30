@@ -24,7 +24,7 @@ export default async function DashboardPage() {
 
   const count = (table: string) => supabase.from(table).select("id", { count: "exact", head: true });
 
-  // Every number below is counted from the signed-in user's own rows (Row Level Security).
+ 
   const [kbCount, docCount, readyCount, activeCount, kbs, recentDocs, conversations] = await Promise.all([
     count("knowledge_bases"),
     count("documents"),
