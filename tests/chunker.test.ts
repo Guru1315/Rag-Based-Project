@@ -8,7 +8,6 @@ describe("chunkSegments", () => {
     expect(chunkSegments([], options)).toEqual([]);
     expect(chunkSegments([{ text: "   \n  " }], options)).toEqual([]);
   });
-
   it("keeps short text in one chunk", () => {
     const chunks = chunkSegments([{ text: "Hello world. This is short." }], options);
     expect(chunks).toHaveLength(1);
