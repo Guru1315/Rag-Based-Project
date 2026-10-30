@@ -3,8 +3,6 @@ import { idParamSchema, updateConversationSchema } from "@/lib/validation";
 
 export const dynamic = "force-dynamic";
 type Ctx = { params: Promise<{ id: string }> };
-
-/** PATCH /api/conversations/:id  { title?, starred? }  (rename / star) */
 export async function PATCH(request: Request, { params }: Ctx) {
   const auth = await requireUser();
   if (auth.error) return auth.error;
@@ -27,7 +25,6 @@ export async function PATCH(request: Request, { params }: Ctx) {
   return ok(data);
 }
 
-/** DELETE /api/conversations/:id  (messages cascade) */
 export async function DELETE(_request: Request, { params }: Ctx) {
   const auth = await requireUser();
   if (auth.error) return auth.error;
