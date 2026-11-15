@@ -38,7 +38,7 @@ export interface Conversation {
   updated_at: string;
 }
 
-/** One retrieved passage that supports an answer. `n` is the citation number [n]. */
+
 export interface Source {
   n: number;
   chunkId: string;
