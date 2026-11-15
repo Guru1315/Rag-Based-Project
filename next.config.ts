@@ -10,7 +10,6 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
-  // Type errors still fail the build. Lint is run separately with `npm run lint`.
   eslint: { ignoreDuringBuilds: true },
   serverExternalPackages: ["exceljs", "mammoth", "jszip"],
   async headers() {
