@@ -12,7 +12,6 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   // Type errors still fail the build. Lint is run separately with `npm run lint`.
   eslint: { ignoreDuringBuilds: true },
-  // These parsers use Node-only code, so keep them out of the bundler.
   serverExternalPackages: ["exceljs", "mammoth", "jszip"],
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
